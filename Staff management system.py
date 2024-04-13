@@ -1,0 +1,171 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP/lqyLGCPqzUVEKUNXQTS4",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/KrishnaMittal4/Python/blob/main/Staff%20management%20system.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Sha13jq4leu4",
+        "outputId": "d4ebf26b-6bb0-46f2-c927-9b556d334678"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "STAFF MANAGEMENT SYSTEM\n",
+            "\n",
+            "\n",
+            "1. ADD STAFF MEMBERS\n",
+            "2. DELETE STAFF MEMBERS\n",
+            "3. DISPLAY STAFF MEMBERS\n",
+            "4. SEARCH FOR SPECIFIED STAFF MEMBER INFORMATION\n",
+            "5. EXIT\n",
+            "Enter your choice: 1\n",
+            "Enter staff member's name: krishna mittal\n",
+            "Enter employee id: 12345\n",
+            "Enter your position: head\n",
+            "Enter your salary: 100000\n",
+            "STAFF MANAGEMENT SYSTEM\n",
+            "\n",
+            "\n",
+            "1. ADD STAFF MEMBERS\n",
+            "2. DELETE STAFF MEMBERS\n",
+            "3. DISPLAY STAFF MEMBERS\n",
+            "4. SEARCH FOR SPECIFIED STAFF MEMBER INFORMATION\n",
+            "5. EXIT\n",
+            "Enter your choice: 3\n",
+            "Staff information\n",
+            "krishna mittal\n",
+            "12345\n",
+            "head\n",
+            "100000\n",
+            "STAFF MANAGEMENT SYSTEM\n",
+            "\n",
+            "\n",
+            "1. ADD STAFF MEMBERS\n",
+            "2. DELETE STAFF MEMBERS\n",
+            "3. DISPLAY STAFF MEMBERS\n",
+            "4. SEARCH FOR SPECIFIED STAFF MEMBER INFORMATION\n",
+            "5. EXIT\n",
+            "Enter your choice: 4\n",
+            "Enter employee id to search: 12345\n",
+            "Staff found\n",
+            "krishna mittal\n",
+            "12345\n",
+            "head\n",
+            "100000\n",
+            "STAFF MANAGEMENT SYSTEM\n",
+            "\n",
+            "\n",
+            "1. ADD STAFF MEMBERS\n",
+            "2. DELETE STAFF MEMBERS\n",
+            "3. DISPLAY STAFF MEMBERS\n",
+            "4. SEARCH FOR SPECIFIED STAFF MEMBER INFORMATION\n",
+            "5. EXIT\n",
+            "Enter your choice: 5\n",
+            "EXITING THE PROGRAM\n"
+          ]
+        }
+      ],
+      "source": [
+        "class Staff:\n",
+        "    def __init__(self, name, employee_id, position, salary):\n",
+        "        self.name = name\n",
+        "        self.employee_id = employee_id\n",
+        "        self.position = position\n",
+        "        self.salary = salary\n",
+        "    def display_info(self):\n",
+        "        print(self.name)\n",
+        "        print(self.employee_id)\n",
+        "        print(self.position)\n",
+        "        print(self.salary)\n",
+        "class Staffmanagementsystem:\n",
+        "    def __init__(self):\n",
+        "        self.staff_list = []\n",
+        "    def add_staff(self, name, employee_id, position, salary):\n",
+        "        staff = Staff(name, employee_id, position, salary)\n",
+        "        self.staff_list.append(staff)\n",
+        "    def display_staff(self):\n",
+        "        if not self.staff_list:\n",
+        "            print(\"No staff information available\")\n",
+        "            return\n",
+        "        print(\"Staff information\")\n",
+        "        for staff in self.staff_list:\n",
+        "            staff.display_info()\n",
+        "    def remove_staff(self, employee_id):\n",
+        "        for staff in self.staff_list:\n",
+        "            if staff.employee_id == employee_id:\n",
+        "                self.staff_list.remove(staff)\n",
+        "                print(\"Staff removed successfully\")\n",
+        "                return\n",
+        "        print(\"Staff with employee_id not found\")\n",
+        "    def search_staff(self, employee_id):\n",
+        "        for staff in self.staff_list:\n",
+        "            if staff.employee_id == employee_id:\n",
+        "                print(\"Staff found\")\n",
+        "                staff.display_info()\n",
+        "                return\n",
+        "        print(\"Staff with employee id not found\")\n",
+        "sms = Staffmanagementsystem()\n",
+        "while True:\n",
+        "    print(\"STAFF MANAGEMENT SYSTEM\")\n",
+        "    print(\"\\n\")\n",
+        "    print(\"1. ADD STAFF MEMBERS\")\n",
+        "    print(\"2. DELETE STAFF MEMBERS\")\n",
+        "    print(\"3. DISPLAY STAFF MEMBERS\")\n",
+        "    print(\"4. SEARCH FOR SPECIFIED STAFF MEMBER INFORMATION\")\n",
+        "    print(\"5. EXIT\")\n",
+        "    choice = int(input(\"Enter your choice: \"))\n",
+        "    if choice == 1:\n",
+        "        name = input(\"Enter staff member's name: \")\n",
+        "        employee_id = input(\"Enter employee id: \")\n",
+        "        position = input(\"Enter your position: \")\n",
+        "        salary = input(\"Enter your salary: \")\n",
+        "        sms.add_staff(name, employee_id, position, salary)\n",
+        "    elif choice == 2:\n",
+        "        employee_id = input(\"Enter the employee id: \")\n",
+        "        sms.remove_staff(employee_id)\n",
+        "    elif choice == 3:\n",
+        "        sms.display_staff()\n",
+        "    elif choice == 4:\n",
+        "        employee_id = input(\"Enter employee id to search: \")\n",
+        "        sms.search_staff(employee_id)\n",
+        "    elif choice == 5:\n",
+        "        print(\"EXITING THE PROGRAM\")\n",
+        "        break\n",
+        "    else:\n",
+        "        print(\"You have entered the wrong option\")\n",
+        ""
+      ]
+    }
+  ]
+}
